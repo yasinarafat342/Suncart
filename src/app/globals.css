@@ -1,0 +1,127 @@
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sun-primary: #f78b0e;
+  --ocean-blue: #0e88ea;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base-100 text-base-content;
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-outfit), system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-sun {
+    @apply bg-gradient-to-r from-sun-500 to-sun-400 text-white font-semibold
+           px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:from-sun-600
+           hover:to-sun-500 transition-all duration-300 transform hover:scale-105
+           active:scale-95 border-none;
+  }
+
+  .btn-ocean {
+    @apply bg-gradient-to-r from-ocean-600 to-ocean-500 text-white font-semibold
+           px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:from-ocean-700
+           hover:to-ocean-600 transition-all duration-300 transform hover:scale-105
+           active:scale-95 border-none;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold font-display;
+  }
+
+  .badge-sale {
+    @apply bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full;
+  }
+
+  .input-summer {
+    @apply input input-bordered w-full focus:input-primary
+           focus:outline-none transition-colors duration-200;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-base-200;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-sun-400 rounded-full;
+}
+
+/* Slick slider customization */
+.slick-dots li button:before {
+  color: var(--sun-primary) !important;
+  font-size: 10px !important;
+}
+.slick-dots li.slick-active button:before {
+  color: var(--sun-primary) !important;
+  opacity: 1 !important;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: var(--sun-primary) !important;
+  font-size: 24px !important;
+}
+
+/* Toast override */
+.toast-summer {
+  border-radius: 12px !important;
+}
+
+/* Hero gradient animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-gradient-animated {
+  background: linear-gradient(-45deg, #f78b0e, #fbbf5c, #38a4f8, #0e88ea);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Star rating */
+.star-filled { color: #f9a52a; }
+.star-empty { color: #d1d5db; }
+
+/* Product card skeleton */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Floating label animation */
+.float-label-group {
+  @apply relative;
+}
+.float-label-group input:focus ~ label,
+.float-label-group input:not(:placeholder-shown) ~ label {
+  @apply -top-2 text-xs text-primary bg-white px-1;
+}
