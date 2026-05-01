@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { signUp, signIn } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { Eye, EyeOff, Mail, Lock, User, Image as ImageIcon, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -36,7 +36,7 @@ export default function RegisterPage() {
     }
     setLoading(true);
     try {
-      const result = await signUp.email({
+      const result = await authClient.signUp.email({
         name: form.name,
         email: form.email,
         password: form.password,
@@ -58,7 +58,7 @@ export default function RegisterPage() {
   const handleGoogleSignIn = async () => {
     setGoogleLoading(true);
     try {
-      await signIn.social({ provider: "google", callbackURL: "/" });
+      await authClient.signIn.social({ provider: "google", callbackURL: "/" });
     } catch {
       toast.error("Google sign-up failed. Please try again.");
       setGoogleLoading(false);

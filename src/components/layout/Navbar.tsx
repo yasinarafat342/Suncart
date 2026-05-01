@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useSession, signOut } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import toast from "react-hot-toast";
-import { ShoppingBag, Sun, Menu, X, User, LogOut, Settings } from "lucide-react";
+import { Sun, Menu, X, User, LogOut, Settings } from "lucide-react";
 
 export default function Navbar() {
   const { data: session, isPending } = useSession();
@@ -26,7 +26,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const handleSignOut = async () => {
-    await signOut();
+    await authClient.signOut(); // ✅
     toast.success("Signed out successfully!");
     router.push("/");
   };
@@ -47,7 +47,6 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sun-400 to-sun-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
               <Sun className="w-5 h-5 text-white" />
@@ -58,7 +57,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
@@ -75,17 +73,12 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Auth Section */}
           <div className="hidden md:flex items-center gap-3">
             {isPending ? (
               <div className="w-8 h-8 rounded-full bg-base-200 animate-pulse" />
             ) : session ? (
               <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="flex items-center gap-2 cursor-pointer group"
-                >
+                <div tabIndex={0} role="button" className="flex items-center gap-2 cursor-pointer group">
                   <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-sun-300 group-hover:border-sun-500 transition-colors shadow-sm">
                     {session.user.image ? (
                       <Image
@@ -107,10 +100,7 @@ export default function Navbar() {
                     {session.user.name?.split(" ")[0]}
                   </span>
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu bg-white rounded-2xl shadow-xl border border-gray-100 w-52 p-2 mt-2 z-50"
-                >
+                <ul tabIndex={0} className="dropdown-content menu bg-white rounded-2xl shadow-xl border border-gray-100 w-52 p-2 mt-2 z-50">
                   <li className="px-3 py-2 border-b border-gray-100 mb-1">
                     <div>
                       <p className="font-semibold text-gray-800 text-sm truncate">{session.user.name}</p>
@@ -142,10 +132,7 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <Link
-                  href="/auth/login"
-                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-sun-500 transition-colors"
-                >
+                <Link href="/auth/login" className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-sun-500 transition-colors">
                   Login
                 </Link>
                 <Link href="/auth/register" className="btn-sun text-sm py-2 px-5">
@@ -155,7 +142,6 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden p-2 rounded-xl hover:bg-base-200 transition-colors"
@@ -166,7 +152,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">

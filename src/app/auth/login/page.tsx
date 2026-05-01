@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { Eye, EyeOff, Mail, Lock, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -30,7 +30,7 @@ export default function LoginPage() {
     }
     setLoading(true);
     try {
-      const result = await signIn.email({
+      const result = await authClient.signIn.email({
         email: form.email,
         password: form.password,
       });
@@ -51,7 +51,7 @@ export default function LoginPage() {
   const handleGoogleSignIn = async () => {
     setGoogleLoading(true);
     try {
-      await signIn.social({ provider: "google", callbackURL: callbackUrl });
+      await authClient.signIn.social({ provider: "google", callbackURL: callbackUrl });
     } catch {
       toast.error("Google sign-in failed. Please try again.");
       setGoogleLoading(false);
@@ -66,14 +66,12 @@ export default function LoginPage() {
       className="w-full max-w-md"
     >
       <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-10">
-        {/* Header */}
         <div className="text-center mb-8">
           <span className="text-5xl block mb-3">☀️</span>
           <h1 className="font-display text-3xl font-bold text-gray-900 mb-2">Welcome Back!</h1>
           <p className="text-gray-500 text-sm">Sign in to access your summer essentials.</p>
         </div>
 
-        {/* Google Button */}
         <button
           onClick={handleGoogleSignIn}
           disabled={googleLoading}
@@ -98,9 +96,7 @@ export default function LoginPage() {
           <div className="flex-1 h-px bg-gray-200" />
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email */}
           <div className="relative">
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <input
@@ -115,7 +111,6 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Password */}
           <div className="relative">
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
             <input
@@ -138,7 +133,6 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             disabled={loading}
@@ -155,7 +149,6 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Register link */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Don&apos;t have an account?{" "}
           <Link href="/auth/register" className="text-sun-500 hover:text-sun-600 font-semibold transition-colors">
