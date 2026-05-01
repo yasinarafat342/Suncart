@@ -36,7 +36,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="suncart" className={`${inter.variable} ${outfit.variable}`}>
+    <html
+      lang="en"
+      data-theme="suncart"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${outfit.variable}`}
+    >
       <body className="min-h-screen flex flex-col antialiased">
         {children}
         <Toaster
