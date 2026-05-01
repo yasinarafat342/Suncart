@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSession, updateUser } from "@/lib/auth-client";
+import { useSession, authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,7 +43,7 @@ export default function UpdateProfilePage() {
     }
     setLoading(true);
     try {
-      await updateUser({ name: form.name, image: form.image || undefined });
+      await authClient.updateUser({ name: form.name, image: form.image || undefined });
       toast.success("Profile updated successfully! 🎉");
       router.push("/my-profile");
       router.refresh();
