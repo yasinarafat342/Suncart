@@ -1,12 +1,18 @@
 import "server-only";
 import { betterAuth } from "better-auth";
-import Database from "better-sqlite3";
+import { libsqlClient } from "better-auth/adapters/libsql";
+import { createClient } from "@libsql/client";
+
+const client = createClient({
+  url: process.env.TURSO_DATABASE_URL!,
+  authToken: process.env.TURSO_AUTH_TOKEN!,
+});
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET!,
   baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
 
-  database: new Database("./suncart.db"),
+  database: libsqlClient(client),
 
   emailAndPassword: {
     enabled: true,
