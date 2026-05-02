@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     description: "Your one-stop shop for summer essentials.",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
