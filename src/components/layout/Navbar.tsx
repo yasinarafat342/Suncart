@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 import { Sun, Menu, X, User, LogOut, Settings } from "lucide-react";
 
 export default function Navbar() {
-  const { data: session, isPending } = useSession();
+  const { data: session, isPending, refresh } = useSession();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
@@ -26,7 +26,8 @@ export default function Navbar() {
   }, [pathname]);
 
   const handleSignOut = async () => {
-    await authClient.signOut(); // ✅
+    await authClient.signOut();
+    refresh();
     toast.success("Signed out successfully!");
     router.push("/");
   };
