@@ -29,6 +29,7 @@ export default function Navbar() {
     await authClient.signOut();
     refresh();
     toast.success("Signed out successfully!");
+    router.refresh();
     router.push("/");
   };
 
