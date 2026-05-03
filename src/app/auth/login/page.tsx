@@ -7,7 +7,12 @@ import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { Eye, EyeOff, Mail, Lock, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { Player } from "@lottiefiles/react-lottie-player";
+import dynamic from "next/dynamic";
+
+const Player = dynamic(
+  () => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  { ssr: false }
+);
 
 function LoginForm() {
   const router = useRouter();
