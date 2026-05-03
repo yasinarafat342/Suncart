@@ -18,6 +18,12 @@ export default function UpdateProfilePage() {
   const [preview, setPreview] = useState("");
 
   useEffect(() => {
+    if (!isPending && !session) {
+      router.push("/auth/login?callbackUrl=/update-profile");
+    }
+  }, [session, isPending, router]);
+
+  useEffect(() => {
     if (session?.user) {
       setForm({
         name: session.user.name || "",
@@ -62,15 +68,11 @@ export default function UpdateProfilePage() {
     );
   }
 
-  if (!session) {
-    router.push("/auth/login?callbackUrl=/update-profile");
-    return null;
-  }
+  if (!session) return null;
 
   return (
     <div className="min-h-screen bg-gray-50 py-10">
       <div className="max-w-xl mx-auto px-4 sm:px-6">
-        {/* Back */}
         <Link
           href="/my-profile"
           className="inline-flex items-center gap-2 text-gray-500 hover:text-sun-500 transition-colors text-sm font-medium mb-6"
@@ -90,7 +92,6 @@ export default function UpdateProfilePage() {
             <p className="text-gray-500 text-sm">Keep your profile fresh and up to date.</p>
           </div>
 
-          {/* Avatar Preview */}
           <div className="flex justify-center mb-8">
             <div className="relative">
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-sun-200 shadow-lg bg-gray-100">
@@ -117,7 +118,6 @@ export default function UpdateProfilePage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Name */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Full Name <span className="text-red-400">*</span>
@@ -136,7 +136,6 @@ export default function UpdateProfilePage() {
               </div>
             </div>
 
-            {/* Image URL */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Profile Photo URL
@@ -155,13 +154,11 @@ export default function UpdateProfilePage() {
               <p className="text-xs text-gray-400 mt-1.5 ml-1">Paste a direct link to your profile image.</p>
             </div>
 
-            {/* Current email (read-only) */}
             <div className="bg-gray-50 rounded-2xl p-4">
               <p className="text-xs text-gray-400 font-medium mb-1">Email (cannot be changed)</p>
               <p className="text-gray-700 font-semibold text-sm">{session.user.email}</p>
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
