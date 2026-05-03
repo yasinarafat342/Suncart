@@ -11,7 +11,7 @@ type Session = Awaited<ReturnType<typeof authClient.getSession>>["data"];
 
 export function useSession() {
   const [data, setData] = useState<Session>(null);
-  const [isPending, setIsPending] = useState(true);
+  const [isPending, setIsPending] = useState(false); // false করলে শুরুতেই button দেখাবে
 
   const fetchSession = useCallback(() => {
     authClient.getSession().then((res) => {
