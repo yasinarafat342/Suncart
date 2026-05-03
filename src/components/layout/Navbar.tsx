@@ -36,7 +36,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/products", label: "Products" },
-    ...(session ? [{ href: "/my-profile", label: "My Profile" }] : []),
+    { href: "/my-profile", label: "My Profile" },
   ];
 
   return (
