@@ -7,6 +7,7 @@ import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { Eye, EyeOff, Mail, Lock, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Player } from "@lottiefiles/react-lottie-player";
 
 function LoginForm() {
   const router = useRouter();
@@ -67,7 +68,12 @@ function LoginForm() {
     >
       <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-10">
         <div className="text-center mb-8">
-          <span className="text-5xl block mb-3">☀️</span>
+          <Player
+            autoplay
+            loop
+            src="https://assets3.lottiefiles.com/packages/lf20_jcikwtux.json"
+            style={{ height: "100px", width: "100px", margin: "0 auto" }}
+          />
           <h1 className="font-display text-3xl font-bold text-gray-900 mb-2">Welcome Back!</h1>
           <p className="text-gray-500 text-sm">Sign in to access your summer essentials.</p>
         </div>
