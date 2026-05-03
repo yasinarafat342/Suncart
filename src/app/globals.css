@@ -1,3 +1,4 @@
+@import "animate.css";
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 
@@ -83,7 +84,6 @@
   color: var(--sun-primary) !important;
   font-size: 24px !important;
 }
-
 
 .toast-summer {
   border-radius: 12px !important;
