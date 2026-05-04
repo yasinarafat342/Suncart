@@ -1,189 +1,134 @@
 # ☀️ SunCart – Summer Essentials Store
 
-A modern, full-stack summer eCommerce platform built with Next.js 15, featuring product browsing, protected routes, and full authentication with Google OAuth.
+SunCart is a modern summer eCommerce platform where users can explore seasonal products like sunglasses, summer outfits, skincare, and beach accessories. Users can browse products, view details, and manage their profile after authentication.
 
 ## 🌐 Live URL
+**[https://suncart-rho.vercel.app](https://suncart-rho.vercel.app)**
 
-> **[https://suncart.vercel.app](https://suncart.vercel.app)**
-> *(Replace with your actual deployed URL)*
-
----
-
-## 📸 Features
-
-- 🛍️ **Product Catalog** — Browse 8+ curated summer products with filtering, search, and sorting
-- 🔐 **Authentication** — Email/password + Google OAuth via BetterAuth
-- 🛡️ **Protected Routes** — Product detail pages redirect to login if unauthenticated
-- 👤 **My Profile** — View account info and stats
-- ✏️ **Update Profile** — Update name and profile photo
-- 🎠 **Hero Slider** — Animated banner with summer deals
-- 🧴 **Summer Care Tips** — Expert skincare & wellness advice
-- 🏆 **Top Brands** — Featured brand showcase
-- 📱 **Fully Responsive** — Mobile, tablet, and desktop
-- 🌟 **Smooth Animations** — Powered by Framer Motion
-- 🍞 **Toast Notifications** — Friendly feedback via react-hot-toast
+## 🐙 GitHub Repository
+**[https://github.com/yasinarafat342/Suncart](https://github.com/yasinarafat342/Suncart)**
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Key Features
 
-| Technology | Purpose |
-|---|---|
-| **Next.js 15** | React framework with App Router |
-| **TypeScript** | Type safety |
-| **Tailwind CSS** | Utility-first styling |
-| **DaisyUI** | Component library on top of Tailwind |
-| **BetterAuth** | Authentication (email + Google OAuth) |
-| **Framer Motion** | Animations and transitions |
-| **react-hot-toast** | Toast notifications |
-| **Lucide React** | Icon library |
+### 🏠 Home Page
+- **Hero Slider** — Animated summer sale banner with hot deals
+- **Popular Products** — 3 featured products with image, rating, price and View Details button
+- **Summer Care Tips** — Expert skincare and wellness advice section
+- **Top Brands** — Featured brand showcase section
+- **Stats Bar** — Free shipping, easy returns, secure payment info
+
+### 🛍️ Products Page
+- Browse all summer products
+- **Filter by Category** — Footwear, Accessories, Skincare, etc.
+- **Search** — Search products by name or brand
+- **Sort** — Sort by price (low/high) or rating
+- Product cards with discount badges, stock indicators
+
+### 📦 Product Details Page (Protected)
+- Only accessible after login
+- If not logged in → redirects to login page
+- After login → redirects back to product
+- Full product info: image, price, rating, description, tags
+- Stock availability indicator
+- Trust badges: Free Shipping, Easy Returns, Secure Payment
+- Related products section
+
+### 🔐 Authentication
+- **Email & Password** — Register and login with email
+- **Google OAuth** — One-click Google sign-in
+- Toast notifications for success/error feedback
+- Secure session management with BetterAuth
+
+### 👤 My Profile
+- View logged-in user's name, email, and profile photo
+- Account information display
+
+### ✏️ Update Profile
+- Update name and profile photo URL
+- Live avatar preview while typing
+- Instant feedback with toast notification
+
+### 🎨 UI/UX
+- Fully responsive — Mobile, Tablet, Desktop
+- Sticky Navbar with user avatar dropdown
+- Hamburger menu for mobile
+- Smooth animations with Framer Motion, Animate.css, React-Spring, Lottie
+- Custom sun-themed color scheme
+- DaisyUI components
 
 ---
 
 ## 📦 npm Packages Used
 
-```
-better-auth          - Authentication library
-framer-motion        - Animations (bonus npm package)
-react-hot-toast      - Toast notifications
-lucide-react         - Icons
-react-slick          - Carousel/slider
-slick-carousel       - Slick CSS styles
-```
+| Package | Purpose |
+|---|---|
+| `better-auth` | Authentication (Email + Google OAuth) |
+| `framer-motion` | Page and component animations |
+| `animate.css` | CSS animations |
+| `react-spring` | Physics-based hover animations on product cards |
+| `@lottiefiles/react-lottie-player` | Lottie animation on login page |
+| `react-hot-toast` | Toast notifications |
+| `lucide-react` | Icons |
+| `react-slick` | Hero slider/carousel |
+| `slick-carousel` | Slick carousel CSS |
+| `kysely` | SQL query builder |
+| `kysely-libsql` | Turso database adapter |
+| `@libsql/client` | LibSQL client for Turso |
+| `daisyui` | UI component library |
+| `tailwindcss` | Utility-first CSS framework |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Next.js 16** — React framework with App Router
+- **TypeScript** — Type safety
+- **Tailwind CSS** — Styling
+- **DaisyUI** — UI components
+- **BetterAuth** — Authentication
+- **Turso (LibSQL)** — Cloud SQLite database
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
-
-### Installation
-
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/suncart.git
+git clone https://github.com/yasinarafat342/Suncart.git
 cd suncart
 
 # Install dependencies
 npm install
 
 # Set up environment variables
-cp .env.example .env.local
-# Edit .env.local with your credentials (see below)
+# Create .env.local file with the following:
+```
 
-# Run the development server
+```env
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+BETTER_AUTH_SECRET=your-secret-key
+BETTER_AUTH_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+TURSO_DATABASE_URL=libsql://your-database.turso.io
+TURSO_AUTH_TOKEN=your-turso-auth-token
+```
+
+```bash
+# Run development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
 ---
 
-## 🔐 Environment Variables
+## 🌍 Deployment
 
-Create a `.env.local` file with the following variables:
-
-```env
-# App URL
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-
-# BetterAuth (generate a strong secret)
-BETTER_AUTH_SECRET=your-super-secret-key-minimum-32-characters
-BETTER_AUTH_URL=http://localhost:3000
-
-# Google OAuth (from Google Cloud Console)
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-
-# Database
-DATABASE_URL=file:./suncart.db
-```
-
-### Setting up Google OAuth
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project → Enable Google+ API
-3. Create OAuth 2.0 credentials
-4. Add `http://localhost:3000/api/auth/callback/google` as Authorized Redirect URI
-5. Copy Client ID and Secret to `.env.local`
-
----
-
-## 📁 Project Structure
-
-```
-suncart/
-├── src/
-│   ├── app/
-│   │   ├── (main)/             # Routes with Navbar + Footer
-│   │   │   ├── page.tsx        # Home page
-│   │   │   ├── products/       # Products listing + detail
-│   │   │   ├── my-profile/     # Profile page (protected)
-│   │   │   └── update-profile/ # Update profile (protected)
-│   │   ├── auth/               # Login & Register pages
-│   │   ├── api/auth/           # BetterAuth API handler
-│   │   ├── layout.tsx          # Root layout
-│   │   └── globals.css         # Global styles
-│   ├── components/
-│   │   ├── layout/             # Navbar, Footer
-│   │   └── ui/                 # ProductCard, HeroSlider, etc.
-│   ├── data/
-│   │   └── products.json       # Static product data
-│   └── lib/
-│       ├── auth.ts             # BetterAuth server config
-│       └── auth-client.ts      # BetterAuth client config
-├── public/                     # Static assets
-├── .env.example                # Environment variable template
-├── tailwind.config.ts
-├── next.config.ts
-└── package.json
-```
-
----
-
-## 🌍 Deployment (Vercel)
-
-1. Push your code to GitHub
-2. Connect your repo on [vercel.com](https://vercel.com)
-3. Add all environment variables in Vercel dashboard
-4. Update `BETTER_AUTH_URL` and `NEXT_PUBLIC_APP_URL` to your Vercel URL
-5. Deploy!
-
-> ⚠️ For production, replace SQLite with a hosted database (e.g., PlanetScale, Neon, Supabase).
-
----
-
-## 📝 Git Commits Guide
-
-Maintain meaningful commit messages:
-
-```
-feat: initialize Next.js project with Tailwind and DaisyUI
-feat: add BetterAuth with email and Google OAuth
-feat: create products JSON data with 8 summer items
-feat: build responsive Navbar with auth state
-feat: build Footer with contact and social links
-feat: implement animated Hero slider
-feat: create ProductCard component with discount badges
-feat: add Products listing page with filter and search
-feat: implement protected product detail page
-feat: add My Profile page with user stats
-feat: add Update Profile page with live avatar preview
-feat: add Summer Care Tips section
-feat: add Top Brands showcase section
-chore: add environment variables and README
-```
+Deployed on **Vercel** with Turso cloud database.
 
 ---
 
 ## 👨‍💻 Author
 
-Built for the **SunCart – Category A8 Assignment**  
-*A modern summer eCommerce platform built with Next.js 15 + BetterAuth*
-
----
-
-## 📄 License
-
-This project is for educational purposes.
+Built for **SunCart – Category A8 (Jackfruit) Assignment**
