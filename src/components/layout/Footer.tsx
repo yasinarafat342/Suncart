@@ -91,19 +91,19 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-sun-400 mt-0.5 shrink-0" />
                 <span className="text-sm text-gray-400">
-                  123 Beach Boulevard, Miami, FL 33139, USA
+                  Mirpur,Dhaka.Bangladesh-1216
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-sun-400 shrink-0" />
                 <a href="tel:+18001234567" className="text-sm text-gray-400 hover:text-sun-400 transition-colors">
-                  +1 (800) 123-4567
+                  01963704659
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-sun-400 shrink-0" />
                 <a href="mailto:hello@suncart.shop" className="text-sm text-gray-400 hover:text-sun-400 transition-colors">
-                  hello@suncart.shop
+                  ya915870@gmail.com
                 </a>
               </li>
             </ul>
