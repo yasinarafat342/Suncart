@@ -28,7 +28,6 @@ export default async function MyProfilePage() {
   return (
     <div className="min-h-screen bg-gray-50 py-10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="font-display text-3xl font-bold text-gray-900 mb-1">My Profile</h1>
           <p className="text-gray-500">Manage your account details and preferences.</p>
@@ -38,14 +37,15 @@ export default async function MyProfilePage() {
           {/* Profile Card */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 text-center">
-              {/* Avatar */}
               <div className="relative w-24 h-24 mx-auto mb-4">
                 {user.image ? (
                   <Image
                     src={user.image}
                     alt={user.name || "User"}
-                    fill
-                    className="rounded-full object-cover border-4 border-sun-200 shadow-lg"
+                    width={96}
+                    height={96}
+                    sizes="96px"
+                    className="rounded-full object-cover border-4 border-sun-200 shadow-lg w-full h-full"
                   />
                 ) : (
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-sun-400 to-sun-600 flex items-center justify-center border-4 border-sun-200 shadow-lg">
@@ -54,7 +54,6 @@ export default async function MyProfilePage() {
                     </span>
                   </div>
                 )}
-                {/* Online dot */}
                 <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white shadow" />
               </div>
 
@@ -78,7 +77,6 @@ export default async function MyProfilePage() {
 
           {/* Right Column */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-4">
               {stats.map(({ label, value, icon: Icon, color }) => (
                 <div key={label} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 text-center">
@@ -91,7 +89,6 @@ export default async function MyProfilePage() {
               ))}
             </div>
 
-            {/* Account Details */}
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
               <h3 className="font-display font-bold text-gray-900 text-lg mb-5">Account Details</h3>
               <div className="space-y-4">
@@ -128,7 +125,6 @@ export default async function MyProfilePage() {
               </div>
             </div>
 
-            {/* Quick Links */}
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6">
               <h3 className="font-display font-bold text-gray-900 text-lg mb-5">Quick Actions</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
